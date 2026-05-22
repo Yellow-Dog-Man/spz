@@ -23,8 +23,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
   set(SPZ_USE_EMSCRIPTEN_ZLIB ON)
 endif()
 
-set(SPZ_SHOULD_INSTALL TRUE)
+set(SPZ_SHOULD_INSTALL FALSE)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(BUILD_SHARED_LIBS ON)
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 
 # zlib is required to build the project
@@ -78,12 +81,14 @@ set(spz_sources
   "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/load-spz.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/splat-c-types.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/splat-types.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/load-spz-c.cc"
 )
 
 set(spz_headers
   "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/load-spz.h"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/splat-c-types.h"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/splat-types.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/cc/load-spz-c.h"
 )
 
 if(SPZ_BUILD_EXTENSIONS)
